@@ -97,6 +97,10 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     # (ForeignKey == OnToMany)　
     # 関連する対象のモデルを指定, 呼び名の指定, 対象の削除時の挙動
+    spicy_level = models.IntegerField(
+        default=0,
+        validators=[MinValueValidator(0),
+                    MaxValueValidator(10)])
     userPost = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  related_name='userPost',
                                  on_delete=models.CASCADE)
@@ -121,10 +125,7 @@ class Comment(models.Model):
                                     on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     # 辛さ
-    spicy_level = models.IntegerField(
-        default=0,
-        validators=[MinValueValidator(0),
-                    MaxValueValidator(10)])
+
 
     class Meta:
         db_table = 'comments'
