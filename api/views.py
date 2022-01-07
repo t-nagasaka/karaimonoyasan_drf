@@ -24,6 +24,8 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     # 対象のserializerを指定(必須)
     serializer_class = serializers.ProfileSerializer
+    # JWTの認証を誰でも可に上書き
+    permission_classes = (AllowAny,)
 
     # オーバーライドメソッド
     def perform_create(self, serializer):
@@ -50,6 +52,8 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     # 対象のserializerを指定(必須)
     serializer_class = serializers.PostSerializer
+    # JWTの認証を誰でも可に上書き
+    permission_classes = (AllowAny,)
 
     # オーバーライドメソッド
     def perform_create(self, serializer):
@@ -63,6 +67,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     # 対象のserializerを指定(必須)
     serializer_class = serializers.CommentSerializer
+    permission_classes = (AllowAny,)
 
     # オーバーライドメソッド
     def perform_create(self, serializer):

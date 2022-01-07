@@ -126,7 +126,6 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     # 辛さ
 
-
     class Meta:
         db_table = 'comments'
         verbose_name_plural = 'コメント'
