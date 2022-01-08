@@ -1,22 +1,24 @@
 from pathlib import Path
 from datetime import timedelta
 import environ
-import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+env.read_env(BASE_DIR.joinpath('.env'))
+
 try:
-    from .local_settings import *
+    SECRET_KEY = env('SECRET_KEY')
 except ImportError:
     pass
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -76,12 +78,7 @@ WSGI_APPLICATION = 'karaimonoyasan_api.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'karaimonoyasan_api_db',
-        'USER': 'root',
-        'PASSWORD': '',
-    }
+    'default': env.db(),
 }
 
 # 閲覧権限の認証用
