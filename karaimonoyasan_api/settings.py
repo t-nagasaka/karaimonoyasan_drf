@@ -17,8 +17,8 @@ except ImportError:
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
-
-ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+# DEBUG = True
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -50,9 +50,8 @@ MIDDLEWARE = [
 ]
 
 # Reactからのアクセス
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000'
-]
+CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST')
+
 ROOT_URLCONF = 'karaimonoyasan_api.urls'
 
 TEMPLATES = [
@@ -80,6 +79,15 @@ WSGI_APPLICATION = 'karaimonoyasan_api.wsgi.application'
 DATABASES = {
     'default': env.db(),
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'karaimonoyasan_api_db',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#     }
+# }
 
 # 閲覧権限の認証用
 REST_FRAMEWORK = {
