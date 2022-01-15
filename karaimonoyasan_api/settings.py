@@ -76,18 +76,18 @@ WSGI_APPLICATION = 'karaimonoyasan_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': env.db(),
-}
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'karaimonoyasan_api_db',
-#         'USER': 'root',
-#         'PASSWORD': '',
-#     }
+#     'default': env.db(),
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'karaimonoyasan_api_db',
+        'USER': 'root',
+        'PASSWORD': '',
+    }
+}
 
 # 閲覧権限の認証用
 REST_FRAMEWORK = {
